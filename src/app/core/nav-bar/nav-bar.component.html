@@ -43,19 +43,14 @@
     </form>
 
     <ul class="navbar-nav ml-auto align-items-center">
-      <li class="nav-item dropdown">
-        <a href="" class="nav-link dropdown-toggle"
-        id="navbarDropdown"
-        role="button"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false">
+      <li class="nav-item">
+        <a routerLink="Basket" class="nav-link">
           <i class="material-icons">shopping_cart</i>
         </a>
       </li>
       <li class="nav-item dropdown">
         <a
-          href=""
+          (click)="ToggleDropdown()"
           class="nav-link dropdown-toggle"
           id="navbarDropdown"
           role="button"
@@ -66,16 +61,21 @@
           <i class="material-icons">account_circle</i>
         </a>
         <div
+          [ngClass]="{ show: visible }"
           class="dropdown-menu dropdown-menu-right"
           aria-labelledby="navbarDropdown"
         >
-          <a href="" class="dropdown-item"
+          <a routerLink="/account/Register" class="dropdown-item"
             >Register <i class="fa fa-user-plus"></i
           ></a>
-          <a href="" class="dropdown-item"
+          <a routerLink="/account/Login" class="dropdown-item"
             >Login <i class="fa fa-sign-in"></i
           ></a>
-          <a href="" class="dropdown-item"
+          <a
+            routerLink="/orders"
+            class="dropdown-item"
+            matBadge="1"
+            matBadgeSize="large"
             >My order <i class="fa fa-list"></i
           ></a>
         </div>
