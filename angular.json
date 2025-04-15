@@ -57,7 +57,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "aot": true
           },
           "configurations": {
             "production": {
@@ -115,7 +116,8 @@
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/font-awesome/css/font-awesome.css"             
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/ngx-spinner/animations/square-jelly-box.css"            
             ],
             "scripts": [
             ]
