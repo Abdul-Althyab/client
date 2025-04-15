@@ -10,8 +10,8 @@ import { BasketService } from '../../basket/basket.service';
 export class NavBarComponent implements OnInit {
   constructor(private basketService: BasketService) {}
   ngOnInit(): void {
-    const id = localStorage.getItem('basketId'); // Get the basket ID from local storage
-    this.basketService.getBasket(id).subscribe({
+    const basketId = localStorage.getItem('basketId'); // Get the basket ID from local storage
+    this.basketService.getBasket(basketId).subscribe({
       next(value) {
         console.log(value); // Log the basket value
       },
