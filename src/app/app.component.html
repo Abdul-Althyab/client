@@ -1,2 +1,15 @@
 <!--header -->
 <app-nav-bar></app-nav-bar>
+
+<!-- Displays a loading spinner during data fetch operations to indicate the application's loading state -->
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="square-jelly-box"
+  [fullScreen]="true">
+  <p class="text-white">Loading...</p>
+</ngx-spinner>
+
+<!-- main content -->
+<router-outlet></router-outlet>

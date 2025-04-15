@@ -1,0 +1,71 @@
+.navbar {
+    background: linear-gradient(45deg, #3f51b5, #5c6bc0);
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand .logo {
+    height: 60px;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+    color: #ffffff;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover {
+    color: #ff4081;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+}
+
+.navbar .navbar-nav .nav-item .nav-link.active {
+    color: #ff4081;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+}
+
+.navbar .form-inline .input-group .form-control {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .form-inline .input-group .btn-light {
+    border-radius: 0 0.5rem 0.5rem 0;
+    border: none;
+    background-color: #ff4081;
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .form-inline .input-group .btn-light:hover {
+    background-color: #e63673;
+}
+
+.navbar .dropdown-menu {
+    background-color: #212121;
+    border-radius: 0.5rem;
+}
+
+.navbar .dropdown-menu a {
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0 15px;
+    }
+
+    .navbar .form-inline {
+        max-width: none;
+    }
+}
