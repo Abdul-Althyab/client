@@ -1,0 +1,13 @@
+.custom-list-group .custom-list-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.custom-list-group .custom-list-item:hover {
+    background-color: rgba(255, 111, 97, 0.1);
+}
+.custom-list-group .custom-list-item.active {
+    background-color: #7961ff;
+    color: white;
+    border-color: #7961ff;
+}
+
