@@ -12,7 +12,7 @@ export class BasketService {
   baseUrl = 'https://localhost:7227/api/';
 
   private basketSource = new BehaviorSubject<IBasket>(null); // BehaviorSubject is used to hold the current value of the basket
-  basket = this.basketSource.asObservable();
+  basket$ = this.basketSource.asObservable();
 
   getBasket(id: string) {
     return this.http.get(this.baseUrl + 'Baskets/get-basket-item/' + id).pipe(
@@ -47,7 +47,10 @@ export class BasketService {
       product,
       quantity
     ); // map the product to a basket item
-    const basket = this.getCurrentBasketValue() ?? this.createBasket(); // get the current basket or create a new one
+    let basket = this.getCurrentBasketValue(); // get the current basket or create a new one
+    if (basket.id == null) {
+      basket = this.createBasket(); // create a new basket if it doesn't exist
+    }
     basket.basketItems = this.addOrUpdateItem(
       basket.basketItems,
       itemToAdd,
