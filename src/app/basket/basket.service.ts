@@ -91,4 +91,53 @@ export class BasketService {
       category: product.categoryName,
     };
   }
+
+  incrementBasketItemQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue(); // get the current basket
+    const foundItemIndex = basket.basketItems.findIndex(
+      (x) => x.id === item.id
+    ); // find the index of the item in the basket
+    basket.basketItems[foundItemIndex].quantity++; // increment the quantity of the item
+    this.setBasket(basket); // set the updated basket
+  }
+
+  decrementBasketItemQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    const foundItemIndex = basket.basketItems.findIndex(
+      (x) => x.id === item.id
+    ); // find the index of the item in the basket
+    if (basket.basketItems[foundItemIndex].quantity > 1) {
+      basket.basketItems[foundItemIndex].quantity--; // decrement the quantity of the item
+      this.setBasket(basket); // set the updated basket
+    } else {
+      this.removeItemFromBasket(item); // remove the item from the basket if its quantity is 1
+    }
+  }
+  // remove the item from the basket
+  removeItemFromBasket(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    if (basket.basketItems.some((x) => x.id === item.id)) {
+      // check if the item is in the basket
+      basket.basketItems = basket.basketItems.filter((x) => x.id !== item.id); // remove the item from the basket
+      if (basket.basketItems.length > 0) {
+        this.setBasket(basket); // set the updated basket
+      } else {
+        this.deleteBasket(basket); // delete the basket if it's empty
+      }
+    }
+  }
+  // delete the basket
+  deleteBasket(basket: IBasket) {
+    return this.http
+      .delete(this.baseUrl + 'Baskets/delete-basket-item/' + basket.id)
+      .subscribe({
+        next: (value) => {
+          this.basketSource.next(null); // set the basket to null
+          localStorage.removeItem('basketId'); // remove the basket id from local storage
+        },
+        error: (error) => {
+          console.log(error); // log the error
+        },
+      });
+  }
 }
