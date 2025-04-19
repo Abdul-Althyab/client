@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PaginationComponent } from './component/pagination/pagination.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { PaginationComponent } from './component/pagination/pagination.component
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
+    RouterModule
   ],
   exports: [
     PaginationModule,

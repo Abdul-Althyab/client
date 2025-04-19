@@ -84,6 +84,7 @@ export class BasketService {
     return {
       id: product.id,
       name: product.name,
+      description: product.description,
       picture: product.pictures[0].imageName,
       quantity: quantity,
       price: product.newPrice,

@@ -1,1 +1,48 @@
-<p>basket works!</p>
+@if(basket && basket.id === null) {
+    <div class="alert alert-info">
+        <h4>Basket is empty</h4>
+        <p>There are no items in your basket.</p>
+    </div>
+}@else  {
+    <div class="container pt-4 flex-container">
+        <div class="basket-container">
+            <table class="table table-hover custom-table">
+                <thead>
+                    <tr class="bg-info text-white">
+                        <th scope="col">Product</th>
+                        <th scope="col"></th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (item of basket.basketItems; track $index) {
+                       <tr>
+                        <td>
+                            <a routerLink="/shop/product-details/{{item.id}}" class="text-dark text-decoration-none">{{item.name}}</a>
+                        </td>
+                        <td>
+                            <img src="https://localhost:7227/{{item.picture}}" alt="{{item.name}}" class="product-image img-fluid">
+                        </td>
+                        <td class="description">
+                           <p>{{item.description}} </p>
+                        </td>
+                        <td class="price">{{item.price | currency}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>
+                            {{item.price * item.quantity | currency}}
+                        </td> 
+                        <td>
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                       </tr> 
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
