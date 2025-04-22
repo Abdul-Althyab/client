@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { RouterModule } from '@angular/router';
+import { OrderTotalComponent } from './component/order-total/order-total.component';
 
 
 @NgModule({
   declarations: [
-    PaginationComponent
+    PaginationComponent,
+    OrderTotalComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     PaginationModule,
-    PaginationComponent
+    PaginationComponent,
+    OrderTotalComponent
   ]
 })
 export class SharedModule { }

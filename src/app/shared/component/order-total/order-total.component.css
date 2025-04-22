@@ -1,0 +1,16 @@
+.order-summary {
+    background-color: #f8f9fa;
+    color: #17a2b8;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+}
+
+.order-details {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
