@@ -34,18 +34,18 @@
         <div class="price-area my-4">
           <p class="old-price mb-1">
             <del>{{ product.oldPrice | currency }}</del>
-            <span class="old-price-discount text-danger">(20% off)</span>
+            <span class="old-price-discount text-danger">({{calculateDiscount(product.oldPrice, product.newPrice)}}% off)</span>
           </p>
           <p class="new-price text-bold mb-1">
             {{ product.newPrice | currency }}
           </p>
-          <p class="text-danger">Quantity : 1</p>
+          <p class="text-danger">Quantity : {{quantity}}</p>
           <div>
-            <button class="btn btn-danger text-white">
+            <button (click)="decrementQuantity()" class="btn btn-danger text-white">
               <i class="fa fa-minus"></i>
             </button>
             &nbsp;
-            <button class="btn btn-dark text-white">
+            <button (click)="incrementQuantity()" class="btn btn-dark text-white">
               <i class="fa fa-plus"></i>
             </button>
           </div>
@@ -59,13 +59,13 @@
             >
           </div>
           <div class="block pt-2">
-            <button class="shadow btn custom-btn">
+            <button (click)="addToBasket()" class="shadow btn custom-btn">
               <i class="fa fa-shopping-cart"></i>
               Add to cart
             </button>
           </div>
           <div class="block pt-2">
-            <button class="shadow btn custom-btn">
+            <button routerLink="/shop" class="shadow btn custom-btn">
               <i class="fa fa-shopping-bag"></i>
               shopping
             </button>
