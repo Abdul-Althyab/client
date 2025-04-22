@@ -14,6 +14,11 @@ export interface IBasket {
     category: string
   }
   export class Basket implements IBasket {
-      id = uuidv4();
+      id = uuidv4(); // Generate a unique ID for the basket
       basketItems: IBasketItem[] = [];
+  }
+  export interface IBasketTotal {
+    shipping: number;
+    subtotal: number;
+    total: number;
   }

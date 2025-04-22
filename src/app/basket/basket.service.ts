@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { Basket, IBasket, IBasketItem } from '../shared/Models/Basket';
+import { Basket, IBasket, IBasketItem, IBasketTotal } from '../shared/Models/Basket';
 import { IProduct } from '../shared/Models/Product';
 
 @Injectable({
@@ -12,13 +12,25 @@ export class BasketService {
   baseUrl = 'https://localhost:7227/api/';
 
   private basketSource = new BehaviorSubject<IBasket>(null); // BehaviorSubject is used to hold the current value of the basket
-  basket$ = this.basketSource.asObservable();
+  basket$ = this.basketSource.asObservable(); // Observable to emit the current value of the basket
+  private basketSourceTotal = new BehaviorSubject<IBasketTotal>(null); // BehaviorSubject to hold the current value of the basket total
+  basketTotal$ = this.basketSourceTotal.asObservable(); // Observable to emit the current value of the basket total
+
+  calculateTotal() {
+    const basket = this.getCurrentBasketValue(); // get the current basket value
+    const shipping = 0; // set the shipping cost to 0
+    const subtotal = basket.basketItems.reduce((sum, item) => {
+      return sum + item.price * item.quantity; // calculate the subtotal by multiplying the price and quantity of each item
+    }, 0);
+    const total = subtotal + shipping; // calculate the total by adding the subtotal and shipping cost
+    this.basketSourceTotal.next({ shipping, subtotal, total }); // emit the new basket total
+  }
 
   getBasket(id: string) {
     return this.http.get(this.baseUrl + 'Baskets/get-basket-item/' + id).pipe(
       map((basket: IBasket) => {
         this.basketSource.next(basket);
-        console.log(basket);
+        this.calculateTotal(); // calculate the total after getting the basket
         return basket; // return the basket after updating the BehaviorSubject
       })
     );
@@ -30,6 +42,7 @@ export class BasketService {
       .subscribe({
         next: (response: IBasket) => {
           this.basketSource.next(response);
+          this.calculateTotal(); // calculate the total after setting the basket
           console.log(response);
         },
         error: (error) => {
