@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IdentityService {
-
-  constructor() { }
+  baseURL = environment.baseURL;
+  constructor(private http: HttpClient) {}
+  registerUser(user: any) {
+    return this.http.post(this.baseURL + 'Account/Register', user);
+  }
 }

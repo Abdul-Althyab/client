@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { IdentityRoutingModule } from './identity-routing.module';
 import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { RegisterComponent } from './register/register.component';
   ],
   imports: [
     CommonModule,
-    IdentityRoutingModule
+    IdentityRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class IdentityModule { }
