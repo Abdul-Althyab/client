@@ -1,6 +1,6 @@
 import { AfterViewChecked, AfterViewInit, Component } from '@angular/core';
 import { ActiveAccount } from '../../shared/Models/ActiveAccount';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IdentityService } from '../identity.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -16,7 +16,8 @@ export class ActiveComponent implements AfterViewInit {
   constructor(
     private router: ActivatedRoute,
     private _service: IdentityService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private route: Router
   ) {}
   ngAfterViewInit(): void {
     this.router.queryParams.subscribe((params) => {
@@ -30,6 +31,7 @@ export class ActiveComponent implements AfterViewInit {
           'Your account has been activated successfully, you can now login',
           'SUCCESS'
         );
+        this.route.navigateByUrl('/Account/Login')
       },
       error: (err) => {
         console.log(err);

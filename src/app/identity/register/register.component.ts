@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IdentityService } from '../identity.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterComponent implements OnInit {
 
   formGroup: FormGroup; // FormGroup is a class that tracks the value and validity state of a group of FormControl instances.
-  constructor(private fb: FormBuilder, private identityService: IdentityService, private toast: ToastrService) {} // FormBuilder is a service that helps to create reactive forms in Angular.
+  constructor(private fb: FormBuilder, private identityService: IdentityService, private toast: ToastrService, private route:Router) {} // FormBuilder is a service that helps to create reactive forms in Angular.
   ngOnInit(): void {
     this.formValidation();
   }
@@ -49,9 +50,11 @@ export class RegisterComponent implements OnInit {
     if (this.formGroup.valid) {
       this.identityService.registerUser(this.formGroup.value).subscribe({
         next: (value) => {
-          this.toast.success('User registered successfully!, Please confirm your email!', 'Success!');
-          this.formGroup.reset(); // Reset the form after successful registration
           console.log(value);
+          this.toast.success('User registered successfully!, Please confirm your email!', 'Success!');
+          this.route.navigateByUrl('/Account/Login'); // Navigate to the login page after successful registration
+          this.formGroup.reset(); // Reset the form after successful registration
+          
         },
         error: (error:any) => {
           this.toast.error(error.error.message, 'Error!');

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IdentityService } from '../identity.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { IdentityService } from '../identity.service';
 export class LoginComponent implements OnInit {
   formGroup: FormGroup;
   emailModel: string = '';
-  constructor(private fb: FormBuilder, private _service: IdentityService) {}
+  constructor(private fb: FormBuilder, private _service: IdentityService, private route:Router) {}
   ngOnInit(): void {
     this.FormValidation();
   }
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
       this._service.loginUser(this.formGroup.value).subscribe({
         next: (response) => {
           console.log(response);
+          this.route.navigateByUrl('/')
         },
         error: (err) => {
           console.log(err);
