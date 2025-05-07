@@ -23,10 +23,8 @@ export class LoginComponent implements OnInit {
         '',
         [
           Validators.required, // The field is required
-          Validators.minLength(8), // The password must be at least 8 characters long
-          // The password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character
           Validators.pattern(
-            '(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
+            /^(?=.*[0-9])(?=.*[#$@!.\-])[A-Za-z\d#$@!.\-]{8,}$/
           ),
         ],
       ],

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { ActiveAccount } from '../shared/Models/ActiveAccount';
+import { ResetPassword } from '../shared/Models/ResetPassword';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +22,9 @@ export class IdentityService {
   }
   forgotPassword(email: string) {
     return this.http.get(this.baseURL + `Account/send-email-forget-password?email=${email}`);
+  }
+
+  resetPassword(resetValue: ResetPassword) {
+    return this.http.post(this.baseURL + 'Account/reset-password', resetValue);
   }
 }
