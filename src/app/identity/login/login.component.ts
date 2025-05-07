@@ -10,6 +10,7 @@ import { IdentityService } from '../identity.service';
 })
 export class LoginComponent implements OnInit {
   formGroup: FormGroup;
+  emailModel: string = '';
   constructor(private fb: FormBuilder, private _service: IdentityService) {}
   ngOnInit(): void {
     this.FormValidation();
@@ -23,7 +24,9 @@ export class LoginComponent implements OnInit {
           Validators.required, // The field is required
           Validators.minLength(8), // The password must be at least 8 characters long
           // The password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character
-          Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'),
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'
+          ),
         ],
       ],
     });
@@ -47,5 +50,15 @@ export class LoginComponent implements OnInit {
     } else {
       console.log('Form is invalid');
     }
+  }
+  sendEmailForgetPassword() {
+    this._service.forgotPassword(this.emailModel).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

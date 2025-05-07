@@ -19,4 +19,7 @@ export class IdentityService {
   loginUser(userForm: any) {
     return this.http.post(this.baseURL + 'Account/Login', userForm);
   }
+  forgotPassword(email: string) {
+    return this.http.get(this.baseURL + `Account/send-email-forget-password?email=${email}`);
+  }
 }
