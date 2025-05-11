@@ -25,6 +25,6 @@ export class IdentityService {
   }
 
   resetPassword(resetValue: ResetPassword) {
-    return this.http.post(this.baseURL + 'Account/reset-password', resetValue);
+    return this.http.post(this.baseURL + 'Account/Reset-password', resetValue);
   }
 }

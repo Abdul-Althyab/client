@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
     this._service.forgotPassword(this.emailModel).subscribe({
       next: (response) => {
         console.log(response);
+      
       },
       error: (err) => {
         console.log(err);

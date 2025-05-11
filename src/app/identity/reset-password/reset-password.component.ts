@@ -70,17 +70,16 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   Submit() {
-    if (this.formGroup.valid) {
-      this.ResetValue.password = this.formGroup.value.password;
+    if(this.formGroup.valid){
+      this.ResetValue.password=this.formGroup.value.password
       this._service.resetPassword(this.ResetValue).subscribe({
-        next: (value) => {
-          console.log(value);
-          this.route.navigateByUrl('/Account/Login');
+        next:()=>{
+            this.route.navigateByUrl('/Account/Login')
+        },error(err) {
+          console.log();
+          
         },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+      })
     }
   }
 }
